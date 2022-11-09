@@ -54,38 +54,51 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 3);
                     nm.setVowels(nm.getVowels() + nameChar);
                     break;
-                default:
+                case "j":  case "s":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 1);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 1);
                     nm.setConsonants(nm.getConsonants() + nameChar);
-            }
-
-            //Calculate ExternalVibrationNumber with consonants
-            if (nameChar.equals("j") || nameChar.equals("s")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 1);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 1);
-            } else if (nameChar.equals("b") || nameChar.equals("k") || nameChar.equals("t")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 2);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 2);
-            } else if (nameChar.equals("c") || nameChar.equals("l")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 3);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 3);
-            } else if (nameChar.equals("d") || nameChar.equals("m") || nameChar.equals("v")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 4);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 4);
-            } else if (nameChar.equals("n") || nameChar.equals("w") || nameChar.equals("ñ")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 5);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 5);
-            } else if (nameChar.equals("f") || nameChar.equals("x")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 6);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 6);
-            } else if (nameChar.equals("g") || nameChar.equals("p") || nameChar.equals("y")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 7);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 7);
-            } else if (nameChar.equals("h") || nameChar.equals("q") || nameChar.equals("z")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 8);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 8);
-            } else if (nameChar.equals("r")) {
-                nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 9);
-                nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 9);
+                    break;
+                case "b":  case "k": case "t":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 2);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 2);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "c":  case "l":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 3);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 3);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "d":  case "m": case "v":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 4);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 4);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "n":  case "w": case "ñ":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 5);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 5);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "f":  case "x":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 6);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 6);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "g":  case "p": case "y":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 7);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 7);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "h":  case "q": case "z":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 8);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 8);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
+                case "r":
+                    nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 9);
+                    nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 9);
+                    nm.setConsonants(nm.getConsonants() + nameChar);
+                    break;
             }
         }
         //Plus digits of number when is mora than 1
@@ -104,7 +117,6 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
         }
         return nm;
     }
-
     //Function calculate 1 digit when is mora than 1
     public Integer calculateOneDigit(Integer numberEntered) {
         int suma = 0;
