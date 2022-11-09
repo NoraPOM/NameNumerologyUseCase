@@ -4,8 +4,6 @@ import com.ClaseJavaJuan.NumerologiaPitagoricaxNombre.dto.NameNumerologyDto;
 import com.ClaseJavaJuan.NumerologiaPitagoricaxNombre.service.NameNumerologyService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class NameNumerologyServiceImpl implements NameNumerologyService {
 
@@ -21,10 +19,10 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
 
         for (int i = 0; i < name.length(); i++) {
 
-            String nameCharMinusculasMayusculas = String.valueOf(name.charAt(i));
-            String nameChar = nameCharMinusculasMayusculas.toLowerCase();
+            String nameCharEnter = String.valueOf(name.charAt(i));
+            String nameChar = nameCharEnter.toLowerCase();
 
-            //Para hallar InternalVibrationNumber desde las vocales
+            //Calculate InternalVibrationNumber with
             switch (nameChar) {
                 case "a":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 1);
@@ -48,7 +46,7 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
                     break;
             }
 
-            //Para hallar ExternalVibrationNumber desde las consonantes
+            //Calculate ExternalVibrationNumber with consonants
             if (nameChar.equals("j") || nameChar.equals("s")) {
                 nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 1);
                 nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 1);
@@ -78,7 +76,7 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
                 nm.setExternalVibrationNumber(nm.getExternalVibrationNumber() + 9);
             }
         }
-        //Para sumar los digitos del entero (cuando supera 2 digitos)
+        //Plus digits of number when is mora than 1
         if (nm.getLifeGoalsNumber() >= 10) {
             Integer numerologyNumber = calculateOneDigit(nm.getLifeGoalsNumber());
             nm.setLifeGoalsNumber(numerologyNumber);
@@ -94,12 +92,12 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
         return nm;
     }
 
-    //Funcion que suma los digitos
-    public Integer calculateOneDigit(Integer numbertoCalculate) {
+    //Function calculate 1 digit when is mora than 1
+    public Integer calculateOneDigit(Integer numberToCalculate) {
         Integer suma = 0;
-        Integer size = Integer.toString(numbertoCalculate).length();
+        Integer size = (Integer.toString(numberToCalculate)).length();
             for (int i = 0; i < size; i++) {
-                String digit = String.valueOf(Integer.toString(numbertoCalculate).charAt(i));
+                String digit = String.valueOf(Integer.toString(numberToCalculate).charAt(i));
                 suma += Integer.parseInt(digit);
         }
         return suma;
