@@ -94,11 +94,13 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
 
     //Function calculate 1 digit when is mora than 1
     public Integer calculateOneDigit(Integer numberToCalculate) {
-        Integer suma = 0;
-        Integer size = (Integer.toString(numberToCalculate)).length();
-            for (int i = 0; i < size; i++) {
-                String digit = String.valueOf(Integer.toString(numberToCalculate).charAt(i));
-                suma += Integer.parseInt(digit);
+        int suma = 0;
+        int size = (Integer.toString(numberToCalculate)).length();
+        for (int i = 0; i < size; i++) {
+           //String stringNumber = Integer.toString(numberToCalculate);
+           // String number = String.valueOf(stringNumber.charAt(i));
+            String number = String.valueOf(Integer.toString(numberToCalculate).charAt(i));
+            suma += Integer.parseInt(number);
         }
         return suma;
     }
