@@ -9,17 +9,22 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
 
     @Override
     public NameNumerologyDto CalculateNumerologyNumber(String name) {
+
         NameNumerologyDto nm = new NameNumerologyDto();
-        nm.setName(name);
+
+        String nameClean = name.replaceAll("\\n","").replaceAll("\\r","");
+
+        nm.setName(nameClean);
         nm.setVowels("");
+        nm.setConsonants("");
         nm.setConsonants("");
         nm.setLifeGoalsNumber(0);
         nm.setInternalVibrationNumber(0);
         nm.setExternalVibrationNumber(0);
 
-        for (int i = 0; i < name.length(); i++) {
+        for (int i = 0; i < nameClean.length(); i++) {
 
-            String nameCharEnter = String.valueOf(name.charAt(i));
+            String nameCharEnter = String.valueOf(nameClean.charAt(i));
             String nameChar = nameCharEnter.toLowerCase();
 
             //Calculate InternalVibrationNumber with
@@ -27,23 +32,30 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
                 case "a":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 1);
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 1);
+                    nm.setVowels(nm.getVowels() + nameChar);
                     break;
                 case "e":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 5);
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 5);
+                    nm.setVowels(nm.getVowels() + nameChar);
                     break;
                 case "i":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 9);
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 9);
+                    nm.setVowels(nm.getVowels() + nameChar);
                     break;
                 case "o":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 6);
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 6);
+                    nm.setVowels(nm.getVowels() + nameChar);
                     break;
                 case "u":
                     nm.setInternalVibrationNumber(nm.getInternalVibrationNumber() + 3);
                     nm.setLifeGoalsNumber(nm.getLifeGoalsNumber() + 3);
+                    nm.setVowels(nm.getVowels() + nameChar);
                     break;
+                default:
+                    nm.setConsonants(nm.getConsonants() + nameChar);
             }
 
             //Calculate ExternalVibrationNumber with consonants
@@ -84,6 +96,7 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
         if (nm.getInternalVibrationNumber() >= 10) {
             Integer numerologyNumber = calculateOneDigit(nm.getInternalVibrationNumber());
             nm.setInternalVibrationNumber(numerologyNumber);
+
         }
         if (nm.getExternalVibrationNumber() >= 10) {
             Integer numerologyNumber = calculateOneDigit(nm.getExternalVibrationNumber());
@@ -93,36 +106,16 @@ public class NameNumerologyServiceImpl implements NameNumerologyService {
     }
 
     //Function calculate 1 digit when is mora than 1
-    public Integer calculateOneDigit(Integer numberToCalculate) {
+    public Integer calculateOneDigit(Integer numberEntered) {
         int suma = 0;
-        int size = (Integer.toString(numberToCalculate)).length();
+        int size = (Integer.toString(numberEntered)).length();
         for (int i = 0; i < size; i++) {
-           //String stringNumber = Integer.toString(numberToCalculate);
-           // String number = String.valueOf(stringNumber.charAt(i));
-            String number = String.valueOf(Integer.toString(numberToCalculate).charAt(i));
+            String number = String.valueOf(Integer.toString(numberEntered).charAt(i));
             suma += Integer.parseInt(number);
+        }
+        if (suma >= 10) {
+            suma = calculateOneDigit(suma);
         }
         return suma;
     }
 }
-
-/*
-        public Integer calculateOneDigit (Integer numberCalculate){
-            Integer sumaIVN = 0;
-            Integer sizeIVN = Integer.toString(nm.getInternalVibrationNumber()).length();
-
-            if (nm.getInternalVibrationNumber() >= 10) {
-
-                for (int iIVN = 0; iIVN < sizeIVN; iIVN++) {
-                    String stringNumberIVN = Integer.toString(nm.getInternalVibrationNumber());
-                    String numberIVN = String.valueOf(stringNumberIVN.charAt(iIVN));
-                    //String numberIVN = String.valueOf(Integer.toString(nm.getInternalVibrationNumber()).charAt(iIVN));
-                    sumaIVN += Integer.parseInt(numberIVN);
-                }
-                nm.setInternalVibrationNumber(sumaIVN);
-            }
-            return nm;
-        }
-
-
- */
